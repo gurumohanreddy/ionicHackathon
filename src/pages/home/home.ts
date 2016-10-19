@@ -24,9 +24,9 @@ export class HomePage {
     this.timer = 60;
   }
 
-  startPlay() {
+  startPlay(t:number) {
     this.play = !this.play;
-    this.timer = 60;
+    this.timer = 60*t;
     this.generateQuestion();
     this.startTimer();
   }

@@ -11,16 +11,16 @@
   <ion-fab center middle *ngIf="!play">
     <button ion-fab mini><ion-icon name="arrow-dropright-circle"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab (click)="startPlay(1)">1 min<ion-icon name=""></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="bottom">
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab (click)="startPlay(2)">2 min<ion-icon name=""></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="left">
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab (click)="startPlay(3)">3 min<ion-icon name=""></ion-icon></button>
     </ion-fab-list>
     <ion-fab-list side="right">
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+      <button ion-fab (click)="startPlay(5)">5 min<ion-icon name=""></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
   <div *ngIf="play">
