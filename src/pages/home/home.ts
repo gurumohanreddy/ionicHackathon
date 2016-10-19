@@ -39,7 +39,8 @@ export class HomePage {
   itemSelected(x:any) {
     if(x===this.correctAnswer){
       this.score+=1;
-      console.log('correct');
+    }else{
+      this.score = 0;
     }
     this.generateQuestion();
   }
