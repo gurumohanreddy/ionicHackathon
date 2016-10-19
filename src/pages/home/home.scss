@@ -1,13 +1,15 @@
 ion-title {
    text-align: center;
 }
-.toolbar-background {
-  background-color: #e74c3c;
+ion-header {
+  .toolbar-background {
+    background-color: #e74c3c;
+  }
+  .toolbar-title {
+    color: #fff;
+  }
 }
 
-.toolbar-title {
-  color: #fff;
-}
 
 .center {
     top: 50%;
@@ -27,4 +29,13 @@ ion-title {
 .question {
   text-align: center;
   font-size: 2.8em !important;
+}
+
+ion-footer {
+  .toolbar {
+    min-height: 0 !important;
+  }
+  .toolbar-title {
+    font-size: 1em;
+  }
 }
