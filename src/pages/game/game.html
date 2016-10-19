@@ -1,14 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Hackers Quiz</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content >
-  <button ion-button icon-right full class="center" (click)="startPlay()" *ngIf="!play">
-    Play <ion-icon name="arrow-dropright-circle"></ion-icon>
- </button>
- <div *ngIf="play">
   <ion-grid>
     <ion-row>
       <ion-col width-80>
@@ -25,5 +14,3 @@
       </ion-col>
     </ion-row>
   </ion-grid>
- </div>
-</ion-content>
