@@ -5,9 +5,24 @@
 </ion-header>
 
 <ion-content >
-  <button ion-button icon-right full class="center" (click)="startPlay()" *ngIf="!play">
+  <!-- <button ion-button icon-right full class="center" (click)="startPlay()" *ngIf="!play">
     Play <ion-icon name="arrow-dropright-circle"></ion-icon>
-  </button>
+  </button> -->
+  <ion-fab center middle *ngIf="!play">
+    <button ion-fab mini><ion-icon name="arrow-dropright-circle"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="right">
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
   <div *ngIf="play">
     <ion-grid>
       <ion-row>
@@ -27,11 +42,11 @@
     </ion-grid>
     <!-- <h3 class="center-hor">Solve Me <ion-icon name="heart" color="secondary"></ion-icon></h3> -->
     <ion-card>
-      <ion-card-content margin-vertical><h1 class="question">{{questionNumber1}}{{questionOperator}}{{questionNumber2}}</h1></ion-card-content>
+      <ion-card-content margin-vertical><h1 class="question">{{questionNumber1}}{{questionOperator.text}}{{questionNumber2}}</h1></ion-card-content>
     </ion-card>
     <ion-list>
-      <ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-        {{item}}
+      <ion-item *ngFor="let option of options" (click)="itemSelected(option)">
+        {{option}}
       </ion-item>
     </ion-list>
   </div>

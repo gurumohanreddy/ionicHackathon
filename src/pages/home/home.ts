@@ -8,22 +8,20 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   play:boolean;
-  gameOperators: Array<String>;
   score:number;
   timer:number;
   timerId:number;
   question:any;
   questionNumber1:number;
   questionNumber2:number;
+  options:Array<any>;
   questionOperator:any;
-  items:Array<any>;
+  correctAnswer:any;
 
   constructor(public navCtrl: NavController) {
     this.play = false;
-    this.gameOperators = ['+','/','*','-'];
     this.score = 0;
     this.timer = 60;
-    this.items= ['a','b','c','d']
   }
 
   startPlay() {
@@ -38,6 +36,43 @@ export class HomePage {
     clearInterval(this.timerId);
   }
 
+  itemSelected(x:any) {
+    if(x===this.correctAnswer){
+      this.score+=1;
+      console.log('correct');
+    }
+    this.generateQuestion();
+  }
+
+private
+  generateQuestion() {
+    this.options= [];
+    this.questionNumber1 = Math.floor(Math.random()*10);
+    this.questionNumber2 = Math.floor(Math.random()*10);
+    this.questionOperator = this.randomOperator();
+    this.correctAnswer = this.questionOperator.operate(this.questionNumber1,this.questionNumber2);
+    let temp = [this.correctAnswer+1,this.correctAnswer-1, this.correctAnswer+2, this.correctAnswer];
+    this.options = this.shuffleArray(temp);
+  }
+
+  randomOperator() {
+    let operators = [
+      {
+        text:'+',
+        operate: function(a:number,b:number){ return a+b;}
+      },
+      {
+        text:'*',
+        operate: function(a:number,b:number){ return a*b;}
+      },
+      {
+        text:'-',
+        operate: function(a:number,b:number){ return a-b;}
+      }
+    ];
+    return operators[Math.floor(Math.random()*operators.length)];
+  }
+
   startTimer() {
     this.timerId = setInterval(()=>{
       if(this.timer>0){
@@ -49,14 +84,13 @@ export class HomePage {
     },1000);
   }
 
-  itemSelected(x:any) {
-    console.log(x);
-  }
-
-private
-  generateQuestion() {
-    this.questionNumber1 = Math.floor(Math.random()*10);
-    this.questionNumber2 = Math.floor(Math.random()*10);
-    this.questionOperator = this.gameOperators[Math.floor(Math.random()* this.gameOperators.length)];
+  shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
   }
 }
