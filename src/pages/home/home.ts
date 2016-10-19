@@ -12,17 +12,24 @@ export class HomePage {
   score:number;
   timer:number;
   timerId:number;
+  question:any;
+  questionNumber1:number;
+  questionNumber2:number;
+  questionOperator:any;
+  items:Array<any>;
 
   constructor(public navCtrl: NavController) {
     this.play = false;
     this.gameOperators = ['+','/','*','-'];
     this.score = 0;
     this.timer = 60;
+    this.items= ['a','b','c','d']
   }
 
   startPlay() {
     this.play = !this.play;
     this.timer = 60;
+    this.generateQuestion();
     this.startTimer();
   }
 
@@ -40,5 +47,16 @@ export class HomePage {
         this.stopPlay();
       }
     },1000);
+  }
+
+  itemSelected(x:any) {
+    console.log(x);
+  }
+
+private
+  generateQuestion() {
+    this.questionNumber1 = Math.floor(Math.random()*10);
+    this.questionNumber2 = Math.floor(Math.random()*10);
+    this.questionOperator = this.gameOperators[Math.floor(Math.random()* this.gameOperators.length)];
   }
 }
