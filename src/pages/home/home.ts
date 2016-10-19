@@ -33,7 +33,7 @@ export class HomePage {
     this.generateQuestion();
     this.startTimer();
   }
-  
+
   stopPlay() {
     this.showAlert();
     this.play = !this.play;
@@ -52,7 +52,7 @@ export class HomePage {
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Game Over!',
-      subTitle: `Your Score :${this.score}`,
+      subTitle: `Your Score : ${this.score}`,
       buttons: ['OK']
     });
     alert.present();

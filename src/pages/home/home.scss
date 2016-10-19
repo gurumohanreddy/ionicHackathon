@@ -23,11 +23,7 @@ ion-header {
     width:100%;
 }
 
-.center-hor {
-  text-align: center;
-}
 .question {
-  text-align: center;
   font-size: 2.8em !important;
 }
 
@@ -39,3 +35,8 @@ ion-footer {
     font-size: 1em;
   }
 }
+
+.item-block {
+    text-align: center !important;
+    font-size: 1.5em;
+  }
