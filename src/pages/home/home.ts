@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
 import { NavController } from 'ionic-angular';
 
@@ -18,7 +19,9 @@ export class HomePage {
   questionOperator:any;
   correctAnswer:any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController) {
     this.play = false;
     this.score = 0;
     this.timer = 60;
@@ -30,8 +33,9 @@ export class HomePage {
     this.generateQuestion();
     this.startTimer();
   }
-
+  
   stopPlay() {
+    this.showAlert();
     this.play = !this.play;
     clearInterval(this.timerId);
   }
@@ -43,6 +47,15 @@ export class HomePage {
       this.score = 0;
     }
     this.generateQuestion();
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Game Over!',
+      subTitle: `Your Score :${this.score}`,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 private

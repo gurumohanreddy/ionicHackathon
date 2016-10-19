@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
 import { GamePage } from '../pages/game/game';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     GamePage,
     HomePage,
-    TabsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -20,10 +16,8 @@ import { TabsPage } from '../pages/tabs/tabs';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     GamePage,
     HomePage,
-    TabsPage
   ],
   providers: []
 })
