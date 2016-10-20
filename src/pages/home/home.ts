@@ -26,11 +26,11 @@ export class HomePage {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public storage: Storage) {
-    this.play = false;
-    this.score = 0;
     this.storage.get('HighScore').then((score) => {
       this.highestScore = score;
     });
+    this.play = false;
+    this.score = 0;
     this.timer = 60;
   }
 
@@ -40,13 +40,14 @@ export class HomePage {
     this.score = 0;
     this.generateQuestion();
     this.startTimer();
-    this.storage.set('name', 'John')
   }
 
   stopPlay() {
-    if(!!this.highestScore && this.highestScore < this.score){
-      this.storage.set('HighScore',this.score);
-      this.showAlert("Congratulations! Your New Highest Score");
+    if(this.highestScore < this.score){
+      this.storage.set('HighScore',this.score).then((score)=>{
+        this.highestScore = score;
+      });
+      this.showAlert("Congratulations! We have a new HighScore");
     }else{
       this.showAlert();
     }
