@@ -21,6 +21,7 @@ export class HomePage {
   questionOperator:any;
   correctAnswer:number;
   highestScore:number;
+  myIcon:string;
 
   constructor(
     public navCtrl: NavController,
@@ -58,10 +59,15 @@ export class HomePage {
   itemSelected(x:any) {
     if(x===this.correctAnswer){
       this.score+=1;
+      this.myIcon = "heart"
     }else{
+      this.myIcon = "sad"
       this.score = 0;
     }
-    this.generateQuestion();
+    setTimeout(()=>{
+      this.generateQuestion();
+    },500);
+    // this.generateQuestion();
   }
 
   showAlert(t="Game Over") {
@@ -75,6 +81,7 @@ export class HomePage {
 
 private
   generateQuestion() {
+    this.myIcon = ""
     this.options= [];
     this.questionNumber1 = Math.floor(Math.random()*10);
     this.questionNumber2 = Math.floor(Math.random()*10);

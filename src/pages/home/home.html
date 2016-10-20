@@ -5,9 +5,6 @@
 </ion-header>
 
 <ion-content >
-  <!-- <button ion-button icon-right full class="center" (click)="startPlay()" *ngIf="!play">
-    Play <ion-icon name="arrow-dropright-circle"></ion-icon>
-  </button> -->
   <ion-fab center middle *ngIf="!play">
     <button ion-fab mini><ion-icon name="arrow-dropright-circle"></ion-icon></button>
     <ion-fab-list side="top">
@@ -41,7 +38,11 @@
       </ion-row>
     </ion-grid>
     <ion-card>
-      <ion-card-content margin-vertical text-center><h1 class="question">{{questionNumber1}}{{questionOperator.text}}{{questionNumber2}}</h1></ion-card-content>
+      <ion-card-content margin-vertical text-center>
+        <h1 class="question">{{questionNumber1}}{{questionOperator.text}}{{questionNumber2}}
+          <ion-icon [name]="myIcon" color="danger"></ion-icon>
+        </h1>
+      </ion-card-content>
     </ion-card>
     <ion-list>
       <ion-item *ngFor="let option of options" (click)="itemSelected(option)">
