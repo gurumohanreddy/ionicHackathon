@@ -66,7 +66,7 @@ export class HomePage {
     }
     setTimeout(()=>{
       this.generateQuestion();
-    },500);
+    },300);
     // this.generateQuestion();
   }
 
