@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
 import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-home',
@@ -15,27 +17,39 @@ export class HomePage {
   question:any;
   questionNumber1:number;
   questionNumber2:number;
-  options:Array<any>;
+  options:Array<number>;
   questionOperator:any;
-  correctAnswer:any;
+  correctAnswer:number;
+  highestScore:number;
 
   constructor(
     public navCtrl: NavController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public storage: Storage) {
     this.play = false;
     this.score = 0;
+    this.storage.get('HighScore').then((score) => {
+      this.highestScore = score;
+    });
     this.timer = 60;
   }
 
   startPlay(t:number) {
     this.play = !this.play;
     this.timer = 60*t;
+    this.score = 0;
     this.generateQuestion();
     this.startTimer();
+    this.storage.set('name', 'John')
   }
 
   stopPlay() {
-    this.showAlert();
+    if(!!this.highestScore && this.highestScore < this.score){
+      this.storage.set('HighScore',this.score);
+      this.showAlert("Congratulations! Your New Highest Score");
+    }else{
+      this.showAlert();
+    }
     this.play = !this.play;
     clearInterval(this.timerId);
   }
@@ -49,9 +63,9 @@ export class HomePage {
     this.generateQuestion();
   }
 
-  showAlert() {
+  showAlert(t="Game Over") {
     let alert = this.alertCtrl.create({
-      title: 'Game Over!',
+      title: t,
       subTitle: `Your Score : ${this.score}`,
       buttons: ['OK']
     });
